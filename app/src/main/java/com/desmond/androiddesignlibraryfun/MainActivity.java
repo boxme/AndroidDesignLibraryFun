@@ -3,6 +3,7 @@ package com.desmond.androiddesignlibraryfun;
 import android.content.res.Configuration;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.design.widget.TabLayout;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -20,6 +21,8 @@ public class MainActivity extends AppCompatActivity {
 
     DrawerLayout mDrawerLayout;
     ActionBarDrawerToggle mDrawerToggle;
+
+    TabLayout mTabLayout;
 
     Toolbar mToolBar;
     FloatingActionButton mFabBtn;
@@ -51,6 +54,11 @@ public class MainActivity extends AppCompatActivity {
     private void init() {
         mToolBar = (Toolbar) findViewById(R.id.toolBar);
         setSupportActionBar(mToolBar);
+
+        mTabLayout = (TabLayout) findViewById(R.id.tabLayout);
+        mTabLayout.addTab(mTabLayout.newTab().setText("Tab 1"));
+        mTabLayout.addTab(mTabLayout.newTab().setText("Tab 2"));
+        mTabLayout.addTab(mTabLayout.newTab().setText("Tab 3"));
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
         mDrawerToggle = new ActionBarDrawerToggle(
