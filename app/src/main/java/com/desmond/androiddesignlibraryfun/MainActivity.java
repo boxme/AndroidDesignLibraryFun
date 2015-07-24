@@ -1,7 +1,11 @@
 package com.desmond.androiddesignlibraryfun;
 
+import android.content.res.Configuration;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -13,6 +17,9 @@ import android.view.View;
 public class MainActivity extends AppCompatActivity {
 
     public static final String TAG = MainActivity.class.getSimpleName();
+
+    DrawerLayout mDrawerLayout;
+    ActionBarDrawerToggle mDrawerToggle;
 
     Toolbar mToolBar;
     FloatingActionButton mFabBtn;
@@ -44,6 +51,29 @@ public class MainActivity extends AppCompatActivity {
     private void init() {
         mToolBar = (Toolbar) findViewById(R.id.toolBar);
         setSupportActionBar(mToolBar);
+
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
+        mDrawerToggle = new ActionBarDrawerToggle(
+                MainActivity.this, mDrawerLayout, R.string.hello_world, R.string.hello_world);
+        mDrawerLayout.setDrawerListener(mDrawerToggle);
+
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setHomeButtonEnabled(true);
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
+    }
+
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        mDrawerToggle.syncState();
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        mDrawerToggle.onConfigurationChanged(newConfig);
     }
 
     @Override
@@ -54,6 +84,10 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        if (mDrawerToggle.onOptionsItemSelected(item)) {
+            return true;
+        }
+
         int id = item.getItemId();
         if (id == R.id.action_settings) {
             return true;
