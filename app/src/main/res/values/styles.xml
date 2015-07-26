@@ -13,4 +13,14 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <!-- CollapsingToolbarLayout Title Text Style -->
+    <style name="ExpandedText" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:textSize">30sp</item>
+    </style>
+    <style name="CollapsedText" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
 </resources>
