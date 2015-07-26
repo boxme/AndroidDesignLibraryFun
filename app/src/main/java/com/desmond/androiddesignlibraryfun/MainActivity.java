@@ -1,6 +1,7 @@
 package com.desmond.androiddesignlibraryfun;
 
 import android.content.res.Configuration;
+import android.graphics.Color;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -43,14 +44,18 @@ public class MainActivity extends AppCompatActivity {
         mFabBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Snackbar.make(rootLayout, "Snackbar!", Snackbar.LENGTH_LONG)
+                Snackbar snackbar = Snackbar.make(rootLayout, "Snackbar!", Snackbar.LENGTH_LONG)
                         .setAction("Undo", new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
                                 Log.d(TAG, "SnackBar clicked");
                             }
                         })
-                        .show();
+                        .setActionTextColor(Color.RED)
+                        .setDuration(Snackbar.LENGTH_LONG);
+
+                snackbar.getView().setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+                snackbar.show();
             }
         });
     }

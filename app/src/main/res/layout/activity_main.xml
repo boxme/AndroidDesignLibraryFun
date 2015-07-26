@@ -22,6 +22,8 @@
                 <!--android:layout_height="?attr/actionBarSize"-->
                 <!--android:background="?attr/colorPrimary"-->
                 <!--app:layout_scrollFlags="scroll|enterAlways"-->
+                    <!--app:layout_scrollFlags="scroll|exitUntilCollapsed"-->
+                    <!--android:minHeight="?attr/actionBarSize"-->
                 <!--app:popupTheme="@style/ThemeOverlay.AppCompat.Light"-->
                 <!--app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>-->
 
@@ -181,6 +183,7 @@
             app:elevation="6dp"
             app:pressedTranslationZ="12dp"
             app:backgroundTint="@color/colorPrimary"
+            app:rippleColor="@color/colorPrimaryDark"
             app:fabSize="normal"/>
     </android.support.design.widget.CoordinatorLayout>
 
