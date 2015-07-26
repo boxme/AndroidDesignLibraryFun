@@ -2,6 +2,7 @@ package com.desmond.androiddesignlibraryfun;
 
 import android.content.res.Configuration;
 import android.graphics.Color;
+import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -11,12 +12,16 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.SubMenu;
 import android.view.View;
+import android.widget.BaseAdapter;
+import android.widget.HeaderViewListAdapter;
+import android.widget.ListView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -84,6 +89,7 @@ public class MainActivity extends AppCompatActivity {
                 int id = menuItem.getItemId();
                 switch (id) {
                     case R.id.navItem1:
+                        addMenuItemToNavDrawerProgrammatically();
                         break;
                     case R.id.navItem2:
                         break;
@@ -92,6 +98,11 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.navItem4:
                         break;
                 }
+
+                String title = menuItem.getTitle().toString();
+                Toast.makeText(MainActivity.this, title, Toast.LENGTH_SHORT).show();
+                menuItem.setChecked(true);
+                mDrawerLayout.closeDrawers();
                 return false;
             }
         });
@@ -133,5 +144,27 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void addMenuItemToNavDrawerProgrammatically() {
+        final Menu menu = mNaviView.getMenu();
+        for (int i = 0; i < 3; i++) {
+            menu.add("Runtime item " + i);
+        }
+
+        final SubMenu subMenu = menu.addSubMenu("Runtime SubHeader");
+        for (int i = 0; i < 2; i++) {
+            subMenu.add("subMenu Runtime item " + i);
+        }
+
+        for (int i = 0; i < mNaviView.getChildCount(); i++) {
+            final View child =  mNaviView.getChildAt(i);
+            if (child != null && child instanceof ListView) {
+                final ListView menuView = (ListView) child;
+                final HeaderViewListAdapter adapter = (HeaderViewListAdapter) menuView.getAdapter();
+                final BaseAdapter wrapped = (BaseAdapter) adapter.getWrappedAdapter();
+                wrapped.notifyDataSetChanged();
+            }
+        }
     }
 }
