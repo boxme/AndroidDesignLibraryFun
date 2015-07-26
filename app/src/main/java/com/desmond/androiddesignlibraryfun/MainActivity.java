@@ -3,6 +3,7 @@ package com.desmond.androiddesignlibraryfun;
 import android.content.res.Configuration;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.widget.DrawerLayout;
@@ -22,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
 
     DrawerLayout mDrawerLayout;
     ActionBarDrawerToggle mDrawerToggle;
+    NavigationView mNaviView;
 
     TabLayout mTabLayout;
     CollapsingToolbarLayout mCollapsingToolbarLayout;
@@ -69,6 +71,25 @@ public class MainActivity extends AppCompatActivity {
         mDrawerToggle = new ActionBarDrawerToggle(
                 MainActivity.this, mDrawerLayout, R.string.hello_world, R.string.hello_world);
         mDrawerLayout.setDrawerListener(mDrawerToggle);
+
+        mNaviView = (NavigationView) findViewById(R.id.navigation);
+        mNaviView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(MenuItem menuItem) {
+                int id = menuItem.getItemId();
+                switch (id) {
+                    case R.id.navItem1:
+                        break;
+                    case R.id.navItem2:
+                        break;
+                    case R.id.navItem3:
+                        break;
+                    case R.id.navItem4:
+                        break;
+                }
+                return false;
+            }
+        });
 
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
