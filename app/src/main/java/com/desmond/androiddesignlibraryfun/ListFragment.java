@@ -2,6 +2,7 @@ package com.desmond.androiddesignlibraryfun;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -72,13 +73,18 @@ public class ListFragment extends Fragment {
 
         @Override
         public void onBindViewHolder(ViewHolder viewHolder, int position) {
-            viewHolder.mTextView.setText(mItems.get(position));
+            final String title = mItems.get(position);
+            viewHolder.mTextView.setText(title);
 
             viewHolder.mView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Context context = v.getContext();
 
+                    Intent detailsIntent = new Intent(context, DetailsActivity.class);
+                    detailsIntent.putExtra(DetailsActivity.EXTRA_INFO, title);
+
+                    context.startActivity(detailsIntent);
                 }
             });
         }

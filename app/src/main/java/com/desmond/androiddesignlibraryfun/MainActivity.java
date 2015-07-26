@@ -3,7 +3,6 @@ package com.desmond.androiddesignlibraryfun;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
@@ -39,7 +38,6 @@ public class MainActivity extends AppCompatActivity {
     NavigationView mNaviView;
 
     TabLayout mTabLayout;
-    CollapsingToolbarLayout mCollapsingToolbarLayout;
 
     Toolbar mToolBar;
     FloatingActionButton mFabBtn;
@@ -83,9 +81,6 @@ public class MainActivity extends AppCompatActivity {
 //        mTabLayout.addTab(mTabLayout.newTab().setText("Tab 1"));
 //        mTabLayout.addTab(mTabLayout.newTab().setText("Tab 2"));
 //        mTabLayout.addTab(mTabLayout.newTab().setText("Tab 3"));
-
-//        mCollapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsingToolbarLayout);
-//        mCollapsingToolbarLayout.setTitle("Design Library");
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
         mDrawerToggle = new ActionBarDrawerToggle(
