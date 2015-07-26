@@ -126,6 +126,20 @@ public class MainActivity extends AppCompatActivity {
         adapter.addTitles("Tab 2");
         adapter.addTitles("Tab 3");
         viewPager.setAdapter(adapter);
+
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {}
+
+            @Override
+            public void onPageSelected(int position) {
+                if (position == 1) mFabBtn.hide();
+                else               mFabBtn.show();
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {}
+        });
     }
 
     @Override
