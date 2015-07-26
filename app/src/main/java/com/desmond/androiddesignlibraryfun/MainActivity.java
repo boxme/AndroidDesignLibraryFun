@@ -8,6 +8,10 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -22,6 +26,9 @@ import android.widget.BaseAdapter;
 import android.widget.HeaderViewListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -69,13 +76,16 @@ public class MainActivity extends AppCompatActivity {
         mToolBar = (Toolbar) findViewById(R.id.toolBar);
         setSupportActionBar(mToolBar);
 
-//        mTabLayout = (TabLayout) findViewById(R.id.tabLayout);
+        ViewPager viewPager = (ViewPager) findViewById(R.id.viewPager);
+        setupViewPager(viewPager);
+        mTabLayout = (TabLayout) findViewById(R.id.tabLayout);
+        mTabLayout.setupWithViewPager(viewPager);
 //        mTabLayout.addTab(mTabLayout.newTab().setText("Tab 1"));
 //        mTabLayout.addTab(mTabLayout.newTab().setText("Tab 2"));
 //        mTabLayout.addTab(mTabLayout.newTab().setText("Tab 3"));
 
-        mCollapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsingToolbarLayout);
-        mCollapsingToolbarLayout.setTitle("Design Library");
+//        mCollapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsingToolbarLayout);
+//        mCollapsingToolbarLayout.setTitle("Design Library");
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
         mDrawerToggle = new ActionBarDrawerToggle(
@@ -103,7 +113,8 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, title, Toast.LENGTH_SHORT).show();
                 menuItem.setChecked(true);
                 mDrawerLayout.closeDrawers();
-                return false;
+
+                return true;
             }
         });
 
@@ -112,6 +123,14 @@ public class MainActivity extends AppCompatActivity {
             actionBar.setHomeButtonEnabled(true);
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
+    }
+
+    private void setupViewPager(ViewPager viewPager) {
+        Adapter adapter = new Adapter(getSupportFragmentManager());
+        adapter.addTitles("Tab 1");
+        adapter.addTitles("Tab 2");
+        adapter.addTitles("Tab 3");
+        viewPager.setAdapter(adapter);
     }
 
     @Override
@@ -165,6 +184,34 @@ public class MainActivity extends AppCompatActivity {
                 final BaseAdapter wrapped = (BaseAdapter) adapter.getWrappedAdapter();
                 wrapped.notifyDataSetChanged();
             }
+        }
+    }
+
+    private static class Adapter extends FragmentStatePagerAdapter {
+
+        private final List<String> mFragmentTitles = new ArrayList<>();
+
+        public Adapter(FragmentManager fm) {
+            super(fm);
+        }
+
+        public void addTitles(String title) {
+            mFragmentTitles.add(title);
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            return ListFragment.newInstance();
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return mFragmentTitles.get(position);
+        }
+
+        @Override
+        public int getCount() {
+            return mFragmentTitles.size();
         }
     }
 }
