@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 public class DetailsActivity extends AppCompatActivity {
 
@@ -27,6 +28,14 @@ public class DetailsActivity extends AppCompatActivity {
 
         mCollapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsingToolbarLayout);
         mCollapsingToolbarLayout.setTitle(getIntent().getStringExtra(EXTRA_INFO));
+
+        final SwitchableFAB fab = (SwitchableFAB) findViewById(R.id.switchable_fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                fab.switchState();
+            }
+        });
     }
 
     @Override

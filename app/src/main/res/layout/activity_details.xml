@@ -175,13 +175,15 @@
 
     </android.support.v4.widget.NestedScrollView>
 
-    <android.support.design.widget.FloatingActionButton
-        android:layout_height="wrap_content"
+    <com.desmond.androiddesignlibraryfun.SwitchableFAB
+        android:id="@+id/switchable_fab"
         android:layout_width="wrap_content"
-        app:layout_anchor="@id/appBarLayout"
-        app:layout_anchorGravity="bottom|right|end"
+        android:layout_height="wrap_content"
         android:src="@drawable/ic_plus"
         android:layout_margin="@dimen/fab_margin_btm"
-        android:clickable="true"/>
+        app:layout_anchor="@id/appBarLayout"
+        app:layout_anchorGravity="bottom|right|end"
+        app:srcSecond="@drawable/ic_favorite"
+        app:backgroundTintSecond="@color/colorPrimary"/>
 
 </android.support.design.widget.CoordinatorLayout>
