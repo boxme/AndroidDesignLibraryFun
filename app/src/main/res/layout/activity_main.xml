@@ -52,7 +52,7 @@
             android:layout_marginBottom="@dimen/fab_margin_btm"
             android:layout_gravity="right|bottom"
             android:src="@drawable/ic_plus"
-            app:layout_behavior="com.desmond.androiddesignlibraryfun.ScrollAwareFABBehavior"
+            app:layout_behavior="com.desmond.androiddesignlibraryfun.behavior.ScrollAwareFABBehavior"
             app:elevation="6dp"
             app:pressedTranslationZ="12dp"
             app:backgroundTint="@color/colorPrimary"

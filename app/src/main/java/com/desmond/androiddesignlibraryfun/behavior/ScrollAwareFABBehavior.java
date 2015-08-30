@@ -1,4 +1,4 @@
-package com.desmond.androiddesignlibraryfun;
+package com.desmond.androiddesignlibraryfun.behavior;
 
 import android.content.Context;
 import android.os.Build;
@@ -12,6 +12,8 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.Interpolator;
+
+import com.desmond.androiddesignlibraryfun.R;
 
 /**
  * Created by desmond on 26/7/15.
@@ -70,7 +72,7 @@ public class ScrollAwareFABBehavior extends FloatingActionButton.Behavior {
                         }
                     }).start();
         } else {
-            Animation anim = AnimationUtils.loadAnimation(button.getContext(), R.anim.fab_out);
+            Animation anim = AnimationUtils.loadAnimation(button.getContext(), R.anim.design_fab_out);
             anim.setInterpolator(INTERPOLATOR);
             anim.setDuration(200L);
             anim.setAnimationListener(new Animation.AnimationListener() {
@@ -105,7 +107,7 @@ public class ScrollAwareFABBehavior extends FloatingActionButton.Behavior {
                     .setListener(null)
                     .start();
         } else {
-            Animation anim = AnimationUtils.loadAnimation(button.getContext(), R.anim.fab_in);
+            Animation anim = AnimationUtils.loadAnimation(button.getContext(), R.anim.design_fab_in);
             anim.setDuration(200L);
             anim.setInterpolator(INTERPOLATOR);
             button.startAnimation(anim);

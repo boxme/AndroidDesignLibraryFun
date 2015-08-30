@@ -1,5 +1,6 @@
 package com.desmond.androiddesignlibraryfun;
 
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -108,8 +109,15 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, title, Toast.LENGTH_SHORT).show();
                 menuItem.setChecked(true);
                 mDrawerLayout.closeDrawers();
-
                 return true;
+            }
+        });
+
+        findViewById(R.id.header_view).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, UserProfileActivity.class);
+                startActivity(intent);
             }
         });
 
